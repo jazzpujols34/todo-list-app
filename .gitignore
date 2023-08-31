@@ -1,0 +1,25 @@
+## .gitignore for AI-Project
+
+### Node.js dependencies
+/react-ai/node_modules/
+### Python Virtual Environment
+/fastapi/env/
+
+### Python Cache Files
+__pycache__/
+
+### SQLite Database (Optional)
+*.db
+
+### Yarn Lock file (Optional)
+yarn.lock
+
+### OS generated files
+.DS_Store 
+Thumbs.db 
+
+### IDE generated files (Optional, depends on your IDE)
+.idea/
+.vscode/
+
+### End of .gitignore

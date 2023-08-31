@@ -1,0 +1,17 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: todo-list-app-backend
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: todo-list-app-backend
+  template:
+    metadata:
+      labels:
+        app: todo-list-app-backend
+    spec:
+      containers:
+      - name: todo-list-app-backend
+        image: jazzpujols34/todo-list-app-backend:latest

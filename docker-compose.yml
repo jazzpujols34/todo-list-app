@@ -1,0 +1,10 @@
+version: '4'
+services:
+  frontend:
+    build: ./react-ai
+    ports:
+      - "8080:80"
+  backend:
+    build: ./fastapi/env
+    ports:
+      - "8000:8000"
