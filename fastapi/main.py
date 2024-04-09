@@ -1,19 +1,35 @@
 from fastapi import FastAPI
 from models import Todo
+from database import metadata, engine, database, todos
+
+metadata.create_all(engine)
 
 app = FastAPI()
 
 
+########## Lifecycle Events ##########
+@app.on_event("startup")
+async def startup():
+    await database.connect()
+
+
+@app.on_event("shutdown")
+async def shutdown():
+    await database.disconnect()
+
+
+########## Routes ##########
 @app.get("/")
 async def root():
     return {"message": "Hello World"}
 
-todos = []
 
 # Get all todos
-@app.get("/todos")
+
+@app.get("/notes/", response_model=list[Todo])
 async def get_todos():
-    return {"todos": todos}
+    query = todos.select()
+    return await database.fetch_all(query)
 
 # Get single todo
 @app.get("/todos/{todo_id}")
